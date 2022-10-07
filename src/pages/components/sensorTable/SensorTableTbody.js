@@ -1,4 +1,4 @@
-function sensorTableTbody(sensorTable) {
+function SensorTableTbody(sensorTable) {
   return (
     <tbody>
       {sensorTable.sensorTableBody.data.map((item, index) => (
@@ -22,4 +22,4 @@ function sensorTableTbody(sensorTable) {
   );
 }
 
-export default sensorTableTbody;
+export default SensorTableTbody;

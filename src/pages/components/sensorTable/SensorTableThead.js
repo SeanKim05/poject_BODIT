@@ -1,4 +1,4 @@
-function sensoTableThead() {
+function SensoTableThead() {
   return (
     <thead>
       <tr className="tableRow">
@@ -20,4 +20,4 @@ function sensoTableThead() {
   );
 }
 
-export default sensoTableThead;
+export default SensoTableThead;
