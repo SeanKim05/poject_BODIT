@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './pages/Main';
-import Graph from './pages/Graph';
+import Graph from './pages/graph/Graph';
 
 function Router() {
   return (
