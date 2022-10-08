@@ -12,7 +12,8 @@ import styled from 'styled-components';
 import ModalCalendar from './components/ModalCalendar';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
+import { faCalendar } from '@fortawesome/free-regular-svg-icons';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 const Graph = () => {
   const [temp, setTemp] = useState();
@@ -101,61 +102,137 @@ const Graph = () => {
   }
 
   return (
-    <MainContainer>
-      <p
-        className="calendar-box"
-        onClick={() => {
-          setModal(true);
-        }}
-      >
-        {pickDay} <FontAwesomeIcon icon={faCalendarDays} />
-      </p>
-      {modal && (
-        <ModalCalendar
-          setModal={setModal}
-          startDate={startDate}
-          setStartDate={setStartDate}
-          handleClick={handleClick}
-        />
-      )}
-      {createAt &&
-        data.map((dataEl, i) => (
-          <div key={i}>
-            <h1 className="title">
-              {i === 0 ? '기온' : i === 1 ? '습도' : '압력'}
-            </h1>
-            <div className="graphBox">
-              <GraphBox data={dataEl} />
-            </div>
+    <Wrap>
+      <header>
+        <div className="headerContainer">
+          <div className="iconContainer">
+            <FontAwesomeIcon icon={faPlus} size="2x" />
+            <FontAwesomeIcon icon={faMinus} size="2x" />
           </div>
-        ))}
-    </MainContainer>
+          <p
+            className="calendar-box"
+            onClick={() => {
+              setModal(true);
+            }}
+          >
+            <FontAwesomeIcon icon={faCalendar} /> <span>{pickDay}</span>
+          </p>
+        </div>
+      </header>
+      <MainContainer>
+        {modal && (
+          <ModalCalendar
+            setModal={setModal}
+            startDate={startDate}
+            setStartDate={setStartDate}
+            handleClick={handleClick}
+          />
+        )}
+        {createAt &&
+          data.map((dataEl, i) => (
+            <div key={i}>
+              <h1 className="title">
+                <span>{i === 0 ? '기온' : i === 1 ? '습도' : '압력'}</span>
+              </h1>
+              <div className="graphBox">
+                <GraphBox data={dataEl} />
+              </div>
+            </div>
+          ))}
+      </MainContainer>
+    </Wrap>
   );
 };
 
 export default Graph;
 
-const MainContainer = styled.div`
+const MainContainer = styled.main``;
+
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  max-width: 1200px;
-  margin: 100px auto;
 
-  .calendar-box {
-    font-size: 30px;
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(39, 127, 242);
+
+    .headerContainer {
+      max-width: 1200px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 auto;
+      color: #fff;
+
+      .iconContainer {
+        svg {
+          cursor: pointer;
+          &:first-child {
+            margin-right: 10px;
+          }
+          &:active {
+            color: #d1d1d1;
+          }
+        }
+      }
+
+      .calendar-box {
+        color: #fff;
+        font-size: 25px;
+        font-weight: 700;
+        &:active {
+          color: #d1d1d1;
+        }
+
+        span {
+          cursor: pointer;
+        }
+        svg {
+          margin-right: 5px;
+          cursor: pointer;
+        }
+      }
+    }
   }
 
-  .title {
-    margin-top: 100px;
-    font-weight: 700;
-    font-size: 20px;
-    text-align: center;
-    color: #222;
-  }
-  .graphBox {
-    margin-top: 20px;
-    margin-bottom: 50px;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  ${MainContainer} {
+    max-width: 1200px;
+
+    .title {
+      text-align: center;
+      margin-top: 100px;
+
+      &:first-child {
+        margin-top: 150px;
+      }
+
+      span {
+        display: inline-block;
+        width: 50px;
+        padding: 8px;
+        background-color: #1c74e8;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 20px;
+        text-align: center;
+        color: #fff;
+        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+          0 1px 3px rgba(0, 0, 0, 0.08);
+      }
+    }
+    .graphBox {
+      margin-top: 20px;
+      margin-bottom: 50px;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+        0 1px 3px rgba(0, 0, 0, 0.08);
+    }
   }
 `;
