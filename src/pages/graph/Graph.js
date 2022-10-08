@@ -170,6 +170,8 @@ const Wrap = styled.div`
       margin: 0 auto;
       color: #fff;
 
+      padding: 0 8px;
+
       .iconContainer {
         svg {
           cursor: pointer;
@@ -192,6 +194,9 @@ const Wrap = styled.div`
 
         span {
           cursor: pointer;
+          @media screen and (max-width: ${({ theme }) => theme.iPhoneXr}) {
+            display: none;
+          }
         }
         svg {
           margin-right: 5px;
@@ -203,6 +208,7 @@ const Wrap = styled.div`
 
   ${MainContainer} {
     max-width: 1200px;
+    width: 100%;
 
     .title {
       text-align: center;
@@ -226,6 +232,7 @@ const Wrap = styled.div`
           0 1px 3px rgba(0, 0, 0, 0.08);
       }
     }
+
     .graphBox {
       margin-top: 20px;
       margin-bottom: 50px;

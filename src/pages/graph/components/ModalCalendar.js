@@ -48,6 +48,24 @@ const CalendatContainer = styled.div`
     width: 600px;
     height: 500px;
     z-index: 100;
+
+    @media screen and (max-width: ${({ theme }) => theme.surfaceDuo}) {
+      width: 360px;
+      height: 410px;
+    }
+
+    @media screen and (max-width: ${({ theme }) => theme.iPhoneXr}) {
+      width: 350px;
+      height: 400px;
+    }
+    @media screen and (max-width: ${({ theme }) => theme.pixel5}) {
+      width: 320px;
+      height: 370px;
+    }
+    @media screen and (max-width: ${({ theme }) => theme.iPhoneSe}) {
+      width: 300px;
+      height: 350px;
+    }
   }
   .react-datepicker__header {
   }
@@ -69,6 +87,9 @@ const CalendatContainer = styled.div`
     margin: 0 auto;
     padding: 15px;
     font-size: 15px;
+    @media screen and (max-width: ${({ theme }) => theme.iPhoneXr}) {
+      padding: 8px;
+    }
   }
 
   .react-datepicker__day--keyboard-selected {
