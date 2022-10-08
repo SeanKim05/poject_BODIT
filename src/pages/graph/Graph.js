@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { CSVLink } from 'react-csv';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -19,7 +20,8 @@ const Graph = () => {
   const [temp, setTemp] = useState();
   const [humidity, setHumidity] = useState();
   const [pressure, setPressure] = useState();
-  const [createAt, setCreatedAt] = useState();
+  const [createdAt, setCreatedAt] = useState();
+  const [originalCreatedAt, setOriginalCreatedAt] = useState();
 
   const [modal, setModal] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
@@ -50,6 +52,7 @@ const Graph = () => {
               ).getUTCMinutes()}분`,
           ),
         );
+        setOriginalCreatedAt(data.feeds.map(feed => feed.created_at));
       });
   }, [pickDay]);
 
@@ -63,10 +66,10 @@ const Graph = () => {
 
   let data;
 
-  if (createAt) {
+  if (createdAt) {
     data = [
       {
-        labels: createAt.map(time => time),
+        labels: createdAt.map(time => time),
         datasets: [
           {
             label: '',
@@ -83,7 +86,7 @@ const Graph = () => {
         ],
       },
       {
-        labels: createAt.map(time => time),
+        labels: createdAt.map(time => time),
         datasets: [
           {
             label: '',
@@ -94,7 +97,7 @@ const Graph = () => {
         ],
       },
       {
-        labels: createAt.map(time => time),
+        labels: createdAt.map(time => time),
         datasets: [
           {
             label: '',
@@ -107,6 +110,26 @@ const Graph = () => {
     ];
   }
 
+  const csvHeaders = [
+    { label: 'Temp', key: 'temp' },
+    { label: 'Humidity', key: 'humidity' },
+    { label: 'Pressure', key: 'pressure' },
+    { label: 'Created at', key: 'created_at' },
+  ];
+
+  let csvData = [];
+  if (createdAt) {
+    for (let i = 0; i < createdAt.length; i++) {
+      csvData.push({
+        temp: temp[i],
+        humidity: humidity[i],
+        pressure: pressure[i],
+        created_at: originalCreatedAt[i],
+      });
+    }
+  }
+  console.log(csvData);
+
   return (
     <Wrap>
       <header>
@@ -116,7 +139,11 @@ const Graph = () => {
             <FontAwesomeIcon icon={faMinus} size="2x" />
           </div>
           <div className="rightContainer">
-            <button>EXPORT</button>
+            <button>
+              <CSVButton header={csvHeaders} data={csvData}>
+                EXPORT
+              </CSVButton>
+            </button>
             <p
               className="calendar-box"
               onClick={() => {
@@ -137,7 +164,7 @@ const Graph = () => {
             handleClick={handleClick}
           />
         )}
-        {createAt &&
+        {createdAt &&
           data.map((dataEl, i) => (
             <div key={i}>
               <h1 className="title">
@@ -156,6 +183,15 @@ const Graph = () => {
 export default Graph;
 
 const MainContainer = styled.main``;
+
+const CSVButton = styled(CSVLink)`
+  text-decoration: none;
+  color: #fff;
+  &:active {
+    background-color: #fff;
+    color: ${({ theme }) => theme.mainBlue};
+  }
+`;
 
 const Wrap = styled.div`
   display: flex;
@@ -191,44 +227,42 @@ const Wrap = styled.div`
           }
         }
       }
+
       .rightContainer {
         display: flex;
+        justify-content: flex-end;
+        align-items: center;
 
         button {
           margin-right: 30px;
           border: 2px solid #fff;
           border-radius: 5px;
           background-color: ${({ theme }) => theme.mainBlue};
-          color: #fff;
           font-weight: 700;
           font-size: 1rem;
+          cursor: pointer;
+          &:active {
+            background-color: #fff;
+            color: ${({ theme }) => theme.mainBlue};
+          }
+        }
+        .calendar-box {
+          color: #fff;
+          font-size: 25px;
+          font-weight: 700;
+          &:active {
+            color: #d1d1d1;
+          }
 
           span {
             cursor: pointer;
             @media screen and (max-width: ${({ theme }) => theme.iPhoneXr}) {
               display: none;
             }
-            &:active {
-              background-color: #fff;
-              color: ${({ theme }) => theme.mainBlue};
-            }
           }
-
-          .calendar-box {
-            color: #fff;
-            font-size: 25px;
-            font-weight: 700;
-            &:active {
-              color: #d1d1d1;
-            }
-
-            span {
-              cursor: pointer;
-            }
-            svg {
-              margin-right: 5px;
-              cursor: pointer;
-            }
+          svg {
+            margin-right: 5px;
+            cursor: pointer;
           }
         }
       }
