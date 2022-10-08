@@ -23,8 +23,11 @@ const Graph = () => {
   const [modal, setModal] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
 
-  const handleClick = e => {
-    setStartDate(e);
+  const handleClick = date => {
+    setStartDate(date);
+    if (date) {
+      setModal(prev => !prev);
+    }
   };
   const pickDay = moment(startDate).format('YYYY-MM-DD');
   const tommorow = moment(pickDay).add(1, 'd').format('YYYY-MM-DD');

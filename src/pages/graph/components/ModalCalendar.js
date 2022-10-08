@@ -4,9 +4,17 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/esm/locale';
 
-const ModalCalendar = ({ startDate, setModal, handleClick }) => {
+const ModalCalendar = ({ startDate, handleClick, setModal }) => {
+  const calendar = useRef(null);
   return (
-    <CalendatContainer>
+    <CalendatContainer
+      ref={calendar}
+      onClick={e => {
+        if (calendar.current === e.target) {
+          setModal(false);
+        }
+      }}
+    >
       <DatePicker
         className="calendar-box"
         onChange={e => {
@@ -17,7 +25,6 @@ const ModalCalendar = ({ startDate, setModal, handleClick }) => {
         shouldCloseOnSelect={false}
         inline
       />
-      <button onClick={() => setModal(false)}>취소</button>
     </CalendatContainer>
   );
 };
@@ -42,9 +49,11 @@ const CalendatContainer = styled.div`
     height: 500px;
     z-index: 100;
   }
+  .react-datepicker__header {
+  }
   .react-datepicker__current-month {
-    padding: 14px;
-    font-size: 20px;
+    padding: 18px;
+    font-size: 22px;
   }
   .react-datepicker__day-names {
     display: flex;
@@ -60,5 +69,10 @@ const CalendatContainer = styled.div`
     margin: 0 auto;
     padding: 15px;
     font-size: 15px;
+  }
+
+  .react-datepicker__day--keyboard-selected {
+    background-color: rgb(218, 122, 79);
+    border-radius: 50%;
   }
 `;
