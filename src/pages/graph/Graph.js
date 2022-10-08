@@ -9,6 +9,8 @@ import {
 } from 'chart.js';
 import GraphBox from './components/GraphBox';
 import styled from 'styled-components';
+import ModalCalendar from './components/ModalCalendar';
+import moment from 'moment';
 
 const Graph = () => {
   const [temp, setTemp] = useState();
@@ -16,9 +18,19 @@ const Graph = () => {
   const [pressure, setPressure] = useState();
   const [createAt, setCreatedAt] = useState();
 
+  const [modal, setModal] = useState(false);
+  const [startDate, setStartDate] = useState(new Date());
+
+  const handleClick = e => {
+    setStartDate(e);
+  };
+  const pickDay = moment(startDate).format('YYYY-MM-DD');
+  const tommorow = moment(pickDay).add(1, 'd').format('YYYY-MM-DD');
+  console.log(pickDay, tommorow);
+
   useEffect(() => {
     fetch(
-      'https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&start=2022-10-7&end=2022-10-8',
+      `https://api.thingspeak.com/channels/1348864/feeds.json?api_key=6SKW0U97IPV2QQV9&start=${pickDay}&end=${tommorow}`,
     )
       .then(res => res.json())
       .then(data => {
@@ -86,6 +98,21 @@ const Graph = () => {
 
   return (
     <MainContainer>
+      <p
+        onClick={() => {
+          setModal(true);
+        }}
+      >
+        {pickDay}
+      </p>
+      {modal && (
+        <ModalCalendar
+          setModal={setModal}
+          startDate={startDate}
+          setStartDate={setStartDate}
+          handleClick={handleClick}
+        />
+      )}
       {createAt &&
         data.map((dataEl, i) => (
           <div key={i}>
