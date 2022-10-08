@@ -1,23 +1,27 @@
-function SensoTableThead() {
+import BatteryFilter from './BatteryFilter';
+import CardFilter from './CardFilter';
+import HardwareFilter from './HardwareFilter';
+
+function SensorTableThead() {
   return (
     <thead>
       <tr className="tableRow">
         <th>#</th>
         <th>thingName</th>
-        <th>Bat.(%)</th>
+        <BatteryFilter />
         <th>Connected at</th>
         <th>Disconnected at</th>
         <th>Reason</th>
-        <th>Card No.</th>
+        <CardFilter />
         <th>Gateway</th>
         <th>Raw sent</th>
         <th>Remain</th>
         <th>RSSI</th>
         <th>F/W ver.</th>
-        <th>H/W ver.</th>
+        <HardwareFilter />
       </tr>
     </thead>
   );
 }
 
-export default SensoTableThead;
+export default SensorTableThead;
