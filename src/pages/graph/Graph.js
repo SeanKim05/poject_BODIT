@@ -11,6 +11,8 @@ import GraphBox from './components/GraphBox';
 import styled from 'styled-components';
 import ModalCalendar from './components/ModalCalendar';
 import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
 
 const Graph = () => {
   const [temp, setTemp] = useState();
@@ -26,7 +28,6 @@ const Graph = () => {
   };
   const pickDay = moment(startDate).format('YYYY-MM-DD');
   const tommorow = moment(pickDay).add(1, 'd').format('YYYY-MM-DD');
-  console.log(pickDay, tommorow);
 
   useEffect(() => {
     fetch(
@@ -46,7 +47,7 @@ const Graph = () => {
           ),
         );
       });
-  }, []);
+  }, [pickDay]);
 
   ChartJS.register(
     CategoryScale,
@@ -99,11 +100,12 @@ const Graph = () => {
   return (
     <MainContainer>
       <p
+        className="calendar-box"
         onClick={() => {
           setModal(true);
         }}
       >
-        {pickDay}
+        {pickDay} <FontAwesomeIcon icon={faCalendarDays} />
       </p>
       {modal && (
         <ModalCalendar
@@ -134,6 +136,10 @@ const MainContainer = styled.div`
   width: 100%;
   max-width: 1200px;
   margin: 100px auto;
+
+  .calendar-box {
+    font-size: 30px;
+  }
 
   .title {
     margin-top: 100px;

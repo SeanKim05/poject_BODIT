@@ -54,10 +54,10 @@ const CalendatContainer = styled.div`
     font-size: 17px;
   }
   .react-datepicker__week {
-    width: 82%;
-    margin: 0 auto;
     display: flex;
     justify-content: space-around;
+    width: 82%;
+    margin: 0 auto;
     padding: 15px;
     font-size: 15px;
   }
