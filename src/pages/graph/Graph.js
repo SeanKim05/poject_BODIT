@@ -203,6 +203,7 @@ const Wrap = styled.div`
 
   ${MainContainer} {
     max-width: 1200px;
+    width: 100%;
 
     .title {
       text-align: center;
@@ -226,6 +227,7 @@ const Wrap = styled.div`
           0 1px 3px rgba(0, 0, 0, 0.08);
       }
     }
+
     .graphBox {
       margin-top: 20px;
       margin-bottom: 50px;

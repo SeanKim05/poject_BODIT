@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
     
     *{
         box-sizing:boerder-box;
+        font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
     }
 `;
 
