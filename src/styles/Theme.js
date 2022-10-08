@@ -6,3 +6,7 @@ export const green = '#3cc926';
 export const grey = 'rgba(196,196,196,0.3)';
 export const middleGrey = 'rgba(65,65,65,0.4)';
 export const deepGrey = '#828282';
+export const surfaceDuo = '550px';
+export const iPhoneXr = '415px';
+export const pixel5 = '395px';
+export const iPhoneSe = '375px';

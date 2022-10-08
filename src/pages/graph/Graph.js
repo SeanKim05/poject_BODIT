@@ -170,6 +170,8 @@ const Wrap = styled.div`
       margin: 0 auto;
       color: #fff;
 
+      padding: 0 8px;
+
       .iconContainer {
         svg {
           cursor: pointer;
@@ -192,6 +194,9 @@ const Wrap = styled.div`
 
         span {
           cursor: pointer;
+          @media screen and (max-width: ${({ theme }) => theme.iPhoneXr}) {
+            display: none;
+          }
         }
         svg {
           margin-right: 5px;
