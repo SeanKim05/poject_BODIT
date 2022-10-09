@@ -5,7 +5,7 @@ import Graph from './pages/graph/Graph';
 
 function Router() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="bodit-team2">
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/graph" element={<Graph />} />

@@ -69,7 +69,7 @@ function Main() {
   };
 
   useEffect(() => {
-    fetch('./data/SensorInfoList.json')
+    fetch('bodit-team2/data/SensorInfoList.json')
       // fetch(url)
       .then(res => res.json())
       .then(data => setSensorData(data));

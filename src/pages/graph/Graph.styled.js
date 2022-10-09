@@ -122,7 +122,6 @@ export const Wrap = styled.div`
     }
 
     .graphBox {
-      width: 40rem;
       margin-top: 1.25rem;
       margin-bottom: 3.125rem;
       padding: 1.875rem;
