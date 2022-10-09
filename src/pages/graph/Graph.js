@@ -1,3 +1,5 @@
+
+import { CSVLink } from 'react-csv';
 import { useState, useEffect } from 'react';
 import {
   Chart as ChartJS,
@@ -13,8 +15,9 @@ import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-import zoomPlugin from 'chartjs-plugin-zoom';
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import * as S from './Graph.styled';
+
 
 const Graph = () => {
   const [temp, setTemp] = useState();
@@ -215,9 +218,24 @@ const Graph = () => {
               <h1 className="title">
                 <span>{i === 0 ? '기온' : i === 1 ? '습도' : '압력'}</span>
               </h1>
-              <div className="graphBox">
-                <GraphBox data={dataEl} />
-              </div>
+              <TransformWrapper wheel={{ wheelDisabled: true }}>
+                {({ zoomIn, zoomOut }) => (
+                  <>
+                    <TransformComponent>
+                      <div className="graphBox">
+                        <GraphBox data={dataEl} />
+                      </div>
+                    </TransformComponent>
+
+                    <button onClick={() => zoomIn()}>
+                      <FontAwesomeIcon icon={faPlus} />
+                    </button>
+                    <button onClick={() => zoomOut()}>
+                      <FontAwesomeIcon icon={faMinus} />
+                    </button>
+                  </>
+                )}
+              </TransformWrapper>
             </div>
           ))
         ) : (
