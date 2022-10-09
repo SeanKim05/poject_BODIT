@@ -73,7 +73,7 @@ npm start
 - fortawesome
 - chart.js (차트 라이브러리)
 - react-chartjs-2
-- chartjs-plugin-zoom
+- eact-zoom-pan-pinch (확대 축소 버튼 라이브러리)
 - react-calendar (달력 라이브러리)
 - react-datepicker
 - date-fns
@@ -88,6 +88,9 @@ npm start
 - ✅ 첫번째 페이지 _(/ )_
 
   - 김유현
+    - 테이블
+      - 배터리 상태에 따른 값 렌더링
+      - 마우스 hover시 row 스타일 변경
 
   <br />
 
@@ -102,6 +105,8 @@ npm start
 - ✅ 두번째 페이지 _(/graph)_
 
   - 김유현
+    - 차트
+      - 버튼 클릭시 그래프 zoom in/out 기능 추가
 
   <br />
 
