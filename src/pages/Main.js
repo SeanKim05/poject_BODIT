@@ -13,7 +13,6 @@ function Main() {
   const ColSort = e => {
     setSensorData(
       sensorData.sort((a, b) => {
-        console.log(e.target);
         setSortState(!sortState);
         switch (e.target.id) {
           case 'thingName':

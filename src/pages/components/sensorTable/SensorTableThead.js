@@ -11,12 +11,19 @@ function SensorTableThead(sensorTable) {
         <th id="thingName" onClick={e => sensorTable.setSensorTableThead(e)}>
           thingName
         </th>
-        <BatteryFilter
-          id="batLvl"
-          setSensorData={sensorTable.setSensorData}
-          originalSensorData={sensorTable.originalSensorData}
-          onClick={e => sensorTable.setSensorTableThead(e)}
-        />
+        <th>
+          <BatteryFilter
+            id="batLvl"
+            setSensorData={sensorTable.setSensorData}
+            originalSensorData={sensorTable.originalSensorData}
+          />
+          <img
+            src={process.env.PUBLIC_URL + '/sort.png'}
+            id="batLvl"
+            className="sortImg"
+            onClick={e => sensorTable.setSensorTableThead(e)}
+          />
+        </th>
         <th id="connAt" onClick={e => sensorTable.setSensorTableThead(e)}>
           Connected at
         </th>
@@ -29,12 +36,19 @@ function SensorTableThead(sensorTable) {
         >
           Reason
         </th>
-        <CardFilter
-          id="connCardNum"
-          setSensorData={sensorTable.setSensorData}
-          originalSensorData={sensorTable.originalSensorData}
-          onClick={e => sensorTable.setSensorTableThead(e)}
-        />
+        <th>
+          <CardFilter
+            id="connCardNum"
+            setSensorData={sensorTable.setSensorData}
+            originalSensorData={sensorTable.originalSensorData}
+          />
+          <img
+            src={process.env.PUBLIC_URL + '/sort.png'}
+            id="connCardNum"
+            className="sortImg"
+            onClick={e => sensorTable.setSensorTableThead(e)}
+          />
+        </th>
         <th id="connGW" onClick={e => sensorTable.setSensorTableThead(e)}>
           Gateway
         </th>
@@ -47,18 +61,30 @@ function SensorTableThead(sensorTable) {
         <th id="rssi" onClick={e => sensorTable.setSensorTableThead(e)}>
           RSSI
         </th>
-        <FirmwareFilter
-          id="fwVer"
-          setSensorData={sensorTable.setSensorData}
-          originalSensorData={sensorTable.originalSensorData}
-          onClick={e => sensorTable.setSensorTableThead(e)}
-        />
-        <HardwareFilter
-          id="hwVer"
-          setSensorData={sensorTable.setSensorData}
-          originalSensorData={sensorTable.originalSensorData}
-          onClick={e => sensorTable.setSensorTableThead(e)}
-        />
+        <th>
+          <FirmwareFilter
+            setSensorData={sensorTable.setSensorData}
+            originalSensorData={sensorTable.originalSensorData}
+          />
+          <img
+            src={process.env.PUBLIC_URL + '/sort.png'}
+            id="fwVer"
+            className="sortImg"
+            onClick={e => sensorTable.setSensorTableThead(e)}
+          />
+        </th>
+        <th>
+          <HardwareFilter
+            setSensorData={sensorTable.setSensorData}
+            originalSensorData={sensorTable.originalSensorData}
+          />
+          <img
+            src={process.env.PUBLIC_URL + '/sort.png'}
+            id="hwVer"
+            className="sortImg"
+            onClick={e => sensorTable.setSensorTableThead(e)}
+          />
+        </th>
       </tr>
     </thead>
   );

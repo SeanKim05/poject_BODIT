@@ -8,10 +8,15 @@ export const TableContainer = styled.div`
       border: 0.063rem solid black;
 
       th {
-        padding: 0.938rem 0.938rem;
+        padding: 0.2rem 0.2rem;
         font-weight: 600;
         font-size: 1.4rem;
         cursor: pointer;
+      }
+
+      .sortImg {
+        margin-left: 0.125rem;
+        margin-top: 0.125rem;
       }
     }
 
