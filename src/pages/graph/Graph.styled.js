@@ -54,6 +54,7 @@ export const Wrap = styled.div`
         align-items: center;
 
         button {
+          color: white;
           margin-right: 1.563rem;
           border: 2px solid #fff;
           border-radius: 5px;

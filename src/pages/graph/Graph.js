@@ -1,5 +1,6 @@
 import { CSVLink } from 'react-csv';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -30,6 +31,11 @@ const Graph = () => {
 
   const [modal, setModal] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
+
+  const navigate = useNavigate();
+  const goMain = () => {
+    navigate('/');
+  };
 
   const handleClick = date => {
     setStartDate(date);
@@ -183,11 +189,9 @@ const Graph = () => {
     <S.Wrap>
       <header>
         <div className="headerContainer">
-          <div className="leftContainer">
-            <FontAwesomeIcon icon={faPlus} size="2x" />
-            <FontAwesomeIcon icon={faMinus} size="2x" />
-          </div>
+          <div className="leftContainer"></div>
           <div className="rightContainer">
+            <button onClick={goMain}>MAIN</button>
             <button>
               <S.CSVButton header={csvHeaders} data={csvData}>
                 EXPORT
