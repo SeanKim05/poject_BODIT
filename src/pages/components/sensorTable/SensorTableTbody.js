@@ -17,7 +17,7 @@ function SensorTableTbody(sensorTable) {
               mouseHandler(index);
             }}
           >
-            <td className="itemIndex">{index}</td>
+            <td className="itemIndex">{index + 1}</td>
             <td>{item.thingName}</td>
             {item.shadow.batLvl > 20 ? (
               <td className="bat_lvl_stat">{item.shadow.batLvl}</td>
