@@ -1,4 +1,3 @@
-
 import { CSVLink } from 'react-csv';
 import { useState, useEffect } from 'react';
 import {
@@ -17,7 +16,6 @@ import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import * as S from './Graph.styled';
-
 
 const Graph = () => {
   const [temp, setTemp] = useState();

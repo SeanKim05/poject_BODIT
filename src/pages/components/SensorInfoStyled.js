@@ -31,9 +31,7 @@ export const TableContainer = styled.div`
     }
 
     td.bat_lvl_stat {
-
       color: inherit;
-
     }
 
     td.bat_lvl_stat_low {
