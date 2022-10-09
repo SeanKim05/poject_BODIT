@@ -17,10 +17,25 @@ export const TableContainer = styled.div`
       font-weight: 600;
     }
 
+    tr.onHover {
+      background-color: grey;
+    }
+    tr.onLeave {
+      background-color: inherit;
+    }
+
     td {
       text-align: center;
       border-bottom: 0.063rem solid #ebedee;
       padding: 15px 15px;
+    }
+
+    td.bat_lvl_stat {
+      color: green;
+    }
+
+    td.bat_lvl_stat_low {
+      color: red;
     }
   }
 `;

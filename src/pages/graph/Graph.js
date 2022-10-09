@@ -15,6 +15,7 @@ import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import zoomPlugin from 'chartjs-plugin-zoom';
 
 const Graph = () => {
   const [temp, setTemp] = useState();
@@ -62,6 +63,7 @@ const Graph = () => {
     PointElement,
     LineElement,
     Tooltip,
+    zoomPlugin,
   );
 
   let data;
@@ -84,6 +86,21 @@ const Graph = () => {
             ),
           },
         ],
+        options: {
+          plugins: {
+            zoom: {
+              zoom: {
+                wheel: {
+                  enabled: true,
+                },
+                pinch: {
+                  enabled: true,
+                },
+                mode: 'xy',
+              },
+            },
+          },
+        },
       },
       {
         labels: createdAt.map(time => time),
@@ -95,6 +112,21 @@ const Graph = () => {
             backgroundColor: 'rgba(39, 127, 242)',
           },
         ],
+        options: {
+          plugins: {
+            zoom: {
+              zoom: {
+                wheel: {
+                  enabled: true,
+                },
+                pinch: {
+                  enabled: true,
+                },
+                mode: 'xy',
+              },
+            },
+          },
+        },
       },
       {
         labels: createdAt.map(time => time),
@@ -106,6 +138,21 @@ const Graph = () => {
             backgroundColor: 'rgba(39, 127, 242)',
           },
         ],
+        options: {
+          plugins: {
+            zoom: {
+              zoom: {
+                wheel: {
+                  enabled: true,
+                },
+                pinch: {
+                  enabled: true,
+                },
+                mode: 'xy',
+              },
+            },
+          },
+        },
       },
     ];
   }
