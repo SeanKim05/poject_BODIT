@@ -8,8 +8,9 @@ export const TableContainer = styled.div`
       border: 0.063rem solid black;
 
       th {
+        padding: 0.938rem 0.938rem;
         font-weight: 600;
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         cursor: pointer;
       }
     }
@@ -26,7 +27,7 @@ export const TableContainer = styled.div`
     }
 
     td {
-      padding: 15px 15px;
+      padding: 0.938rem 0.938rem;
       font-weight: 600;
       text-align: center;
       border-bottom: 0.063rem solid #ebedee;

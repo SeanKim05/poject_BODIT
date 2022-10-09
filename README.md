@@ -125,6 +125,9 @@ npm start
   - 서지원
 
     - 달력
+      - 모달창(해당 날짜 클릭시 사라짐)
+      - react-datepicker 라이브러리로 구현
+      - moment.js로 날짜 구현
 
     - UI
       - 반응형 구현

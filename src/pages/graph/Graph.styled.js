@@ -145,5 +145,11 @@ export const Wrap = styled.div`
         font-size: 1.438rem;
       }
     }
+    button {
+      background-color: rgba(39, 127, 242);
+      color: white;
+      border: 1px solid white;
+      border-radius: 5px;
+    }
   }
 `;
