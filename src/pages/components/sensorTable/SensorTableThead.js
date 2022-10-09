@@ -1,4 +1,9 @@
-function SensoTableThead(sensorTable) {
+import BatteryFilter from './BatteryFilter';
+import CardFilter from './CardFilter';
+import FirmwareFilter from './FirmwareFIlter';
+import HardwareFilter from './HardwareFilter';
+
+function SensorTableThead(sensorTable) {
   return (
     <thead>
       <tr className="tableRow">
@@ -6,9 +11,12 @@ function SensoTableThead(sensorTable) {
         <th id="thingName" onClick={e => sensorTable.setSensorTableThead(e)}>
           thingName
         </th>
-        <th id="batLvl" onClick={e => sensorTable.setSensorTableThead(e)}>
-          Bat.(%)
-        </th>
+        <BatteryFilter
+          id="batLvl"
+          setSensorData={sensorTable.setSensorData}
+          originalSensorData={sensorTable.originalSensorData}
+          onClick={e => sensorTable.setSensorTableThead(e)}
+        />
         <th id="connAt" onClick={e => sensorTable.setSensorTableThead(e)}>
           Connected at
         </th>
@@ -21,9 +29,12 @@ function SensoTableThead(sensorTable) {
         >
           Reason
         </th>
-        <th id="connCardNum" onClick={e => sensorTable.setSensorTableThead(e)}>
-          Card No.
-        </th>
+        <CardFilter
+          id="connCardNum"
+          setSensorData={sensorTable.setSensorData}
+          originalSensorData={sensorTable.originalSensorData}
+          onClick={e => sensorTable.setSensorTableThead(e)}
+        />
         <th id="connGW" onClick={e => sensorTable.setSensorTableThead(e)}>
           Gateway
         </th>
@@ -36,15 +47,21 @@ function SensoTableThead(sensorTable) {
         <th id="rssi" onClick={e => sensorTable.setSensorTableThead(e)}>
           RSSI
         </th>
-        <th id="fwVer" onClick={e => sensorTable.setSensorTableThead(e)}>
-          F/W ver.
-        </th>
-        <th id="hwVer" onClick={e => sensorTable.setSensorTableThead(e)}>
-          H/W ver.
-        </th>
+        <FirmwareFilter
+          id="fwVer"
+          setSensorData={sensorTable.setSensorData}
+          originalSensorData={sensorTable.originalSensorData}
+          onClick={e => sensorTable.setSensorTableThead(e)}
+        />
+        <HardwareFilter
+          id="hwVer"
+          setSensorData={sensorTable.setSensorData}
+          originalSensorData={sensorTable.originalSensorData}
+          onClick={e => sensorTable.setSensorTableThead(e)}
+        />
       </tr>
     </thead>
   );
 }
 
-export default SensoTableThead;
+export default SensorTableThead;
