@@ -7,6 +7,8 @@ function SensorInfoTable(sensorData) {
     <TableContainer>
       <table className="sensorInfoTable">
         <SensorTableThead
+          setSensorData={sensorData.setSensorData}
+          originalSensorData={sensorData.originalSensorData}
           sensorTableThead={sensorData.data}
           setSensorTableThead={sensorData.setData}
         />

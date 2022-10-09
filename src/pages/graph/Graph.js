@@ -13,7 +13,11 @@ import ModalCalendar from './components/ModalCalendar';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPlus,
+  faMinus,
+  faRotateRight,
+} from '@fortawesome/free-solid-svg-icons';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import * as S from './Graph.styled';
 
@@ -63,7 +67,6 @@ const Graph = () => {
     PointElement,
     LineElement,
     Tooltip,
-    zoomPlugin,
   );
 
   let data;
@@ -217,7 +220,7 @@ const Graph = () => {
                 <span>{i === 0 ? '기온' : i === 1 ? '습도' : '압력'}</span>
               </h1>
               <TransformWrapper wheel={{ wheelDisabled: true }}>
-                {({ zoomIn, zoomOut }) => (
+                {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
                   <>
                     <TransformComponent>
                       <div className="graphBox">
@@ -230,6 +233,9 @@ const Graph = () => {
                     </button>
                     <button onClick={() => zoomOut()}>
                       <FontAwesomeIcon icon={faMinus} />
+                    </button>
+                    <button onClick={() => resetTransform()}>
+                      <FontAwesomeIcon icon={faRotateRight} />
                     </button>
                   </>
                 )}
