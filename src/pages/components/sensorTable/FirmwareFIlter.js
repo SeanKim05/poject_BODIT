@@ -1,19 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-function CardFilter({ setSensorData, originalSensorData }) {
+function FirmwareFilter({ setSensorData, originalSensorData }) {
   const [open, setOpen] = useState(false);
   const ref = useRef();
   const [condition, setCondition] = useState();
-  const CardFilterHandler = e => {
+  const FirmwareFilterHandler = e => {
     setOpen(!open);
     setCondition(e.target.textContent);
   };
   useEffect(() => {
     setSensorData(() =>
-      [...originalSensorData].filter(
-        data => data.shadow.connCardNum == condition,
-      ),
+      [...originalSensorData].filter(data => data.shadow.fwVer == condition),
     );
   }, [condition]);
   useEffect(() => {
@@ -32,27 +30,27 @@ function CardFilter({ setSensorData, originalSensorData }) {
 
   return (
     <>
-      <DropdownBtn>
-        <th onClick={() => setOpen(!open)}>Card No.</th>
-      </DropdownBtn>
+      <Dropdownbtn>
+        <th onClick={() => setOpen(!open)}>F/W ver.</th>
+      </Dropdownbtn>
       {open && (
         <DropdownList ref={ref}>
-          <DropdownItem onClick={CardFilterHandler}>0</DropdownItem>
-          <DropdownItem onClick={CardFilterHandler}>1</DropdownItem>
+          <DropdownItem onClick={FirmwareFilterHandler}>1.0.0</DropdownItem>
+          <DropdownItem onClick={FirmwareFilterHandler}>Others</DropdownItem>
         </DropdownList>
       )}
     </>
   );
 }
 
-export default CardFilter;
+export default FirmwareFilter;
 
-const DropdownBtn = styled.div`
+const Dropdownbtn = styled.div`
   cursor: pointer;
 `;
 const DropdownList = styled.div`
   position: absolute;
-  width: 55px;
+  width: 95px;
   background-color: #fff;
   border: 1px solid black;
 `;
