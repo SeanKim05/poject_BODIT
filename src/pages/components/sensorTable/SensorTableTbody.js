@@ -24,11 +24,11 @@ function SensorTableTbody(sensorTable) {
             ) : (
               <td className="bat_lvl_stat_low">{item.shadow.batLvl}</td>
             )}
-            <td>{item.shadow.connectionTime}</td>
-            <td>{item.shadow.disconnectionTime}</td>
+            <td>{item.shadow.connAt}</td>
+            <td>{item.shadow.disconnAt}</td>
             <td>{item.shadow.disconnReason}</td>
             <td>{item.shadow.connCardNum}</td>
-            <td>{item.shadow.connectedGateway}</td>
+            <td>{item.shadow.connGW}</td>
             <td>{item.shadow.rawSentCnt}</td>
             <td>{item.shadow.remainData}</td>
             <td>{item.shadow.rssi}</td>

@@ -10,6 +10,7 @@ export const TableContainer = styled.div`
       th {
         font-weight: 600;
         font-size: 1.3rem;
+        cursor: pointer;
       }
     }
 
