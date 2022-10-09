@@ -93,7 +93,7 @@ const CalendatContainer = styled.div`
   }
 
   .react-datepicker__day--keyboard-selected {
-    background-color: rgb(218, 122, 79);
+    background-color: #1c74e8;
     border-radius: 50%;
   }
 `;

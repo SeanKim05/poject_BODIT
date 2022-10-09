@@ -175,7 +175,6 @@ const Graph = () => {
       });
     }
   }
-  console.log(csvData);
 
   return (
     <Wrap>
@@ -211,7 +210,7 @@ const Graph = () => {
             handleClick={handleClick}
           />
         )}
-        {createdAt &&
+        {createdAt?.length > 0 ? (
           data.map((dataEl, i) => (
             <div key={i}>
               <h1 className="title">
@@ -221,7 +220,10 @@ const Graph = () => {
                 <GraphBox data={dataEl} />
               </div>
             </div>
-          ))}
+          ))
+        ) : (
+          <div className="empty-data">해당 날짜에 데이터가 없습니다.</div>
+        )}
       </MainContainer>
     </Wrap>
   );
@@ -350,6 +352,22 @@ const Wrap = styled.div`
       border-radius: 20px;
       box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
         0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .empty-data {
+      position: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 72px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      font-size: 40px;
+
+      @media screen and (max-width: ${({ theme }) => theme.surfaceDuo}) {
+        font-size: 23px;
+      }
     }
   }
 `;
