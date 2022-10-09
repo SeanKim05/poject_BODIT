@@ -26,9 +26,10 @@ export const TableContainer = styled.div`
     }
 
     td {
+      padding: 15px 15px;
+      font-weight: 600;
       text-align: center;
       border-bottom: 0.063rem solid #ebedee;
-      padding: 15px 15px;
     }
 
     td.bat_lvl_stat {
