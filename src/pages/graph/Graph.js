@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+
 import { CSVLink } from 'react-csv';
+import { useState, useEffect } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,12 +10,14 @@ import {
   Tooltip,
 } from 'chart.js';
 import GraphBox from './components/GraphBox';
-import styled from 'styled-components';
 import ModalCalendar from './components/ModalCalendar';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import * as S from './Graph.styled';
+
 
 const Graph = () => {
   const [temp, setTemp] = useState();
@@ -62,6 +65,7 @@ const Graph = () => {
     PointElement,
     LineElement,
     Tooltip,
+    zoomPlugin,
   );
 
   let data;
@@ -84,6 +88,21 @@ const Graph = () => {
             ),
           },
         ],
+        options: {
+          plugins: {
+            zoom: {
+              zoom: {
+                wheel: {
+                  enabled: true,
+                },
+                pinch: {
+                  enabled: true,
+                },
+                mode: 'xy',
+              },
+            },
+          },
+        },
       },
       {
         labels: createdAt.map(time => time),
@@ -95,6 +114,21 @@ const Graph = () => {
             backgroundColor: 'rgba(39, 127, 242)',
           },
         ],
+        options: {
+          plugins: {
+            zoom: {
+              zoom: {
+                wheel: {
+                  enabled: true,
+                },
+                pinch: {
+                  enabled: true,
+                },
+                mode: 'xy',
+              },
+            },
+          },
+        },
       },
       {
         labels: createdAt.map(time => time),
@@ -106,6 +140,21 @@ const Graph = () => {
             backgroundColor: 'rgba(39, 127, 242)',
           },
         ],
+        options: {
+          plugins: {
+            zoom: {
+              zoom: {
+                wheel: {
+                  enabled: true,
+                },
+                pinch: {
+                  enabled: true,
+                },
+                mode: 'xy',
+              },
+            },
+          },
+        },
       },
     ];
   }
@@ -128,10 +177,9 @@ const Graph = () => {
       });
     }
   }
-  console.log(csvData);
 
   return (
-    <Wrap>
+    <S.Wrap>
       <header>
         <div className="headerContainer">
           <div className="leftContainer">
@@ -140,9 +188,9 @@ const Graph = () => {
           </div>
           <div className="rightContainer">
             <button>
-              <CSVButton header={csvHeaders} data={csvData}>
+              <S.CSVButton header={csvHeaders} data={csvData}>
                 EXPORT
-              </CSVButton>
+              </S.CSVButton>
             </button>
             <p
               className="calendar-box"
@@ -155,7 +203,7 @@ const Graph = () => {
           </div>
         </div>
       </header>
-      <MainContainer>
+      <S.MainContainer>
         {modal && (
           <ModalCalendar
             setModal={setModal}
@@ -164,145 +212,38 @@ const Graph = () => {
             handleClick={handleClick}
           />
         )}
-        {createdAt &&
+        {createdAt?.length > 0 ? (
           data.map((dataEl, i) => (
             <div key={i}>
               <h1 className="title">
                 <span>{i === 0 ? '기온' : i === 1 ? '습도' : '압력'}</span>
               </h1>
-              <div className="graphBox">
-                <GraphBox data={dataEl} />
-              </div>
+              <TransformWrapper wheel={{ wheelDisabled: true }}>
+                {({ zoomIn, zoomOut }) => (
+                  <>
+                    <TransformComponent>
+                      <div className="graphBox">
+                        <GraphBox data={dataEl} />
+                      </div>
+                    </TransformComponent>
+
+                    <button onClick={() => zoomIn()}>
+                      <FontAwesomeIcon icon={faPlus} />
+                    </button>
+                    <button onClick={() => zoomOut()}>
+                      <FontAwesomeIcon icon={faMinus} />
+                    </button>
+                  </>
+                )}
+              </TransformWrapper>
             </div>
-          ))}
-      </MainContainer>
-    </Wrap>
+          ))
+        ) : (
+          <div className="empty-data">해당 날짜에 데이터가 없습니다.</div>
+        )}
+      </S.MainContainer>
+    </S.Wrap>
   );
 };
 
 export default Graph;
-
-const MainContainer = styled.main``;
-
-const CSVButton = styled(CSVLink)`
-  text-decoration: none;
-  color: #fff;
-  &:active {
-    background-color: #fff;
-    color: ${({ theme }) => theme.mainBlue};
-  }
-`;
-
-const Wrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-
-  header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 20px;
-    background-color: rgba(39, 127, 242);
-
-    .headerContainer {
-      max-width: 1200px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 0 auto;
-      color: #fff;
-      padding: 0 8px;
-
-      .leftContainer {
-        svg {
-          cursor: pointer;
-          &:first-child {
-            margin-right: 10px;
-          }
-          &:active {
-            color: #d1d1d1;
-          }
-        }
-      }
-
-      .rightContainer {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-
-        button {
-          margin-right: 30px;
-          border: 2px solid #fff;
-          border-radius: 5px;
-          background-color: ${({ theme }) => theme.mainBlue};
-          font-weight: 700;
-          font-size: 1rem;
-          cursor: pointer;
-          &:active {
-            background-color: #fff;
-            color: ${({ theme }) => theme.mainBlue};
-          }
-        }
-        .calendar-box {
-          color: #fff;
-          font-size: 25px;
-          font-weight: 700;
-          &:active {
-            color: #d1d1d1;
-          }
-
-          span {
-            cursor: pointer;
-            @media screen and (max-width: ${({ theme }) => theme.iPhoneXr}) {
-              display: none;
-            }
-          }
-          svg {
-            margin-right: 5px;
-            cursor: pointer;
-          }
-        }
-      }
-    }
-  }
-
-  ${MainContainer} {
-    max-width: 1200px;
-    width: 100%;
-
-    .title {
-      text-align: center;
-      margin-top: 100px;
-
-      &:first-child {
-        margin-top: 150px;
-      }
-
-      span {
-        display: inline-block;
-        width: 50px;
-        padding: 8px;
-        background-color: #1c74e8;
-        border-radius: 30px;
-        font-weight: 700;
-        font-size: 20px;
-        text-align: center;
-        color: #fff;
-        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
-          0 1px 3px rgba(0, 0, 0, 0.08);
-      }
-    }
-
-    .graphBox {
-      margin-top: 20px;
-      margin-bottom: 50px;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
-        0 1px 3px rgba(0, 0, 0, 0.08);
-    }
-  }
-`;
