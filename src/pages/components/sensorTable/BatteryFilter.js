@@ -32,9 +32,7 @@ function BatteryFilter({ setSensorData, originalSensorData }) {
 
   return (
     <>
-      <DropdownBtn>
-        <th onClick={() => setOpen(!open)}>Bat.(%)</th>
-      </DropdownBtn>
+      <DropdownBtn onClick={() => setOpen(!open)}>Bat.(%)</DropdownBtn>
       {open && (
         <DropdownList ref={ref}>
           <DropdownItem onClick={BatteryFilterHandler}>100%↓</DropdownItem>
@@ -51,6 +49,8 @@ function BatteryFilter({ setSensorData, originalSensorData }) {
 export default BatteryFilter;
 
 const DropdownBtn = styled.div`
+  font-weight: 600;
+  font-size: 1.3rem;
   cursor: pointer;
 `;
 const DropdownList = styled.div`

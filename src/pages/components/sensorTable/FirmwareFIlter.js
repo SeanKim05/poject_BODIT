@@ -11,7 +11,11 @@ function FirmwareFilter({ setSensorData, originalSensorData }) {
   };
   useEffect(() => {
     setSensorData(() =>
-      [...originalSensorData].filter(data => data.shadow.fwVer == condition),
+      [...originalSensorData].filter(data =>
+        '1.0.0' == condition
+          ? data.shadow.fwVer == '1.0.0'
+          : data.shadow.fwVer != '1.0.0',
+      ),
     );
   }, [condition]);
   useEffect(() => {
@@ -30,9 +34,7 @@ function FirmwareFilter({ setSensorData, originalSensorData }) {
 
   return (
     <>
-      <Dropdownbtn>
-        <th onClick={() => setOpen(!open)}>F/W ver.</th>
-      </Dropdownbtn>
+      <DropdownBtn onClick={() => setOpen(!open)}>F/W ver.</DropdownBtn>
       {open && (
         <DropdownList ref={ref}>
           <DropdownItem onClick={FirmwareFilterHandler}>1.0.0</DropdownItem>
@@ -45,7 +47,9 @@ function FirmwareFilter({ setSensorData, originalSensorData }) {
 
 export default FirmwareFilter;
 
-const Dropdownbtn = styled.div`
+const DropdownBtn = styled.div`
+  font-weight: 600;
+  font-size: 1.3rem;
   cursor: pointer;
 `;
 const DropdownList = styled.div`

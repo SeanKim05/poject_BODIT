@@ -9,6 +9,8 @@ function SensorInfoTable(sensorData) {
         <SensorTableThead
           setSensorData={sensorData.setSensorData}
           originalSensorData={sensorData.originalSensorData}
+          sensorTableThead={sensorData.data}
+          setSensorTableThead={sensorData.setData}
         />
         <SensorTableTbody sensorTableBody={sensorData} />
       </table>

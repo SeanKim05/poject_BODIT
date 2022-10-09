@@ -11,7 +11,11 @@ function HardwareFilter({ setSensorData, originalSensorData }) {
   };
   useEffect(() => {
     setSensorData(() =>
-      [...originalSensorData].filter(data => data.shadow.hwVer == condition),
+      [...originalSensorData].filter(data =>
+        '1.0.0' == condition
+          ? data.shadow.hwVer == '1.0.0'
+          : data.shadow.hwVer != '1.0.0',
+      ),
     );
   }, [condition]);
   useEffect(() => {
@@ -30,9 +34,7 @@ function HardwareFilter({ setSensorData, originalSensorData }) {
 
   return (
     <>
-      <Dropdownbtn>
-        <th onClick={() => setOpen(!open)}>H/W ver.</th>
-      </Dropdownbtn>
+      <DropdownBtn onClick={() => setOpen(!open)}>H/W ver.</DropdownBtn>
       {open && (
         <DropdownList ref={ref}>
           <DropdownItem onClick={HardwareFilterHandler}>1.0.0</DropdownItem>
@@ -45,7 +47,9 @@ function HardwareFilter({ setSensorData, originalSensorData }) {
 
 export default HardwareFilter;
 
-const Dropdownbtn = styled.div`
+const DropdownBtn = styled.div`
+  font-weight: 600;
+  font-size: 1.3rem;
   cursor: pointer;
 `;
 const DropdownList = styled.div`

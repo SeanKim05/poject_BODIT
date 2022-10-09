@@ -32,9 +32,7 @@ function CardFilter({ setSensorData, originalSensorData }) {
 
   return (
     <>
-      <DropdownBtn>
-        <th onClick={() => setOpen(!open)}>Card No.</th>
-      </DropdownBtn>
+      <DropdownBtn onClick={() => setOpen(!open)}>Card No.</DropdownBtn>
       {open && (
         <DropdownList ref={ref}>
           <DropdownItem onClick={CardFilterHandler}>0</DropdownItem>
@@ -48,6 +46,8 @@ function CardFilter({ setSensorData, originalSensorData }) {
 export default CardFilter;
 
 const DropdownBtn = styled.div`
+  font-weight: 600;
+  font-size: 1.3rem;
   cursor: pointer;
 `;
 const DropdownList = styled.div`

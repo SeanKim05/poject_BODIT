@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -21,7 +21,7 @@ const ModalCalendar = ({ startDate, handleClick, setModal }) => {
           handleClick(e);
         }}
         locale={ko}
-        startDate={startDate}
+        selected={startDate}
         shouldCloseOnSelect={false}
         inline
       />
@@ -92,8 +92,8 @@ const CalendatContainer = styled.div`
     }
   }
 
-  .react-datepicker__day--keyboard-selected {
-    background-color: rgb(218, 122, 79);
+  .react-datepicker__day--selected {
+    background-color: #1c74e8;
     border-radius: 50%;
   }
 `;
