@@ -13,18 +13,13 @@ export const CSVButton = styled(CSVLink)`
 `;
 
 export const Wrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-
   header {
     position: fixed;
     top: 0;
     width: 100%;
     padding: 1.25rem;
     background-color: rgba(39, 127, 242);
+    z-index: 10;
 
     .headerContainer {
       display: flex;
@@ -49,9 +44,15 @@ export const Wrap = styled.div`
       }
 
       .rightContainer {
+        width: 100%;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
+
+        .header-right-container {
+          display: flex;
+          padding-right: 15px;
+        }
 
         button {
           color: white;
@@ -98,6 +99,14 @@ export const Wrap = styled.div`
   ${MainContainer} {
     width: 95%;
     max-width: 1200px;
+    margin: 0 auto;
+
+    .graph-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
     .title {
       margin-top: 6.25rem;
@@ -123,12 +132,23 @@ export const Wrap = styled.div`
     }
 
     .graphBox {
+      width: 800px;
       margin-top: 1.25rem;
       margin-bottom: 3.125rem;
       padding: 1.875rem;
       border-radius: 1.25rem;
       box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
         0 1px 3px rgba(0, 0, 0, 0.08);
+
+      @media screen and (max-width: 900px) {
+        width: 600px;
+      }
+      @media screen and (max-width: 720px) {
+        width: 400px;
+      }
+      @media screen and (max-width: ${({ theme }) => theme.iPhoneXr}) {
+        width: 250px;
+      }
     }
 
     .empty-data {
@@ -146,11 +166,29 @@ export const Wrap = styled.div`
         font-size: 1.438rem;
       }
     }
-    button {
-      background-color: rgba(39, 127, 242);
-      color: white;
-      border: 1px solid white;
-      border-radius: 5px;
+    .zoom-container {
+      width: 800px;
+      display: flex;
+      justify-content: flex-end;
+      button {
+        background-color: rgba(39, 127, 242);
+        color: white;
+        border: 1px solid white;
+        border-radius: 5px;
+      }
+
+      @media screen and (max-width: 900px) {
+        width: 600px;
+      }
+      @media screen and (max-width: 720px) {
+        width: 400px;
+      }
+      @media screen and (max-width: ${({ theme }) => theme.iPhoneXr}) {
+        width: 250px;
+      }
+      @media screen and (max-width: ${({ theme }) => theme.iPhoneSe}) {
+        width: 200px;
+      }
     }
   }
 `;

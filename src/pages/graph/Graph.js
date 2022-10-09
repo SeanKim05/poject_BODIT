@@ -191,20 +191,27 @@ const Graph = () => {
         <div className="headerContainer">
           <div className="leftContainer"></div>
           <div className="rightContainer">
-            <button onClick={goMain}>MAIN</button>
-            <button>
-              <S.CSVButton header={csvHeaders} data={csvData}>
-                EXPORT
-              </S.CSVButton>
-            </button>
-            <p
-              className="calendar-box"
-              onClick={() => {
-                setModal(true);
-              }}
-            >
-              <FontAwesomeIcon icon={faCalendar} /> <span>{pickDay}</span>
-            </p>
+            <div className="header-left">
+              <button onClick={goMain}>MAIN</button>
+            </div>
+            <div className="header-right-container">
+              <div className="header-right">
+                <button>
+                  <S.CSVButton header={csvHeaders} data={csvData}>
+                    EXPORT
+                  </S.CSVButton>
+                </button>
+              </div>
+
+              <p
+                className="calendar-box"
+                onClick={() => {
+                  setModal(true);
+                }}
+              >
+                <FontAwesomeIcon icon={faCalendar} /> <span>{pickDay}</span>
+              </p>
+            </div>
           </div>
         </div>
       </header>
@@ -219,7 +226,7 @@ const Graph = () => {
         )}
         {createdAt?.length > 0 ? (
           data.map((dataEl, i) => (
-            <div key={i}>
+            <div className="graph-container" key={i}>
               <h1 className="title">
                 <span>{i === 0 ? '기온' : i === 1 ? '습도' : '압력'}</span>
               </h1>
@@ -231,16 +238,17 @@ const Graph = () => {
                         <GraphBox data={dataEl} />
                       </div>
                     </TransformComponent>
-
-                    <button onClick={() => zoomIn()}>
-                      <FontAwesomeIcon icon={faPlus} />
-                    </button>
-                    <button onClick={() => zoomOut()}>
-                      <FontAwesomeIcon icon={faMinus} />
-                    </button>
-                    <button onClick={() => resetTransform()}>
-                      <FontAwesomeIcon icon={faRotateRight} />
-                    </button>
+                    <div className="zoom-container">
+                      <button onClick={() => zoomIn()}>
+                        <FontAwesomeIcon icon={faPlus} />
+                      </button>
+                      <button onClick={() => zoomOut()}>
+                        <FontAwesomeIcon icon={faMinus} />
+                      </button>
+                      <button onClick={() => resetTransform()}>
+                        <FontAwesomeIcon icon={faRotateRight} />
+                      </button>
+                    </div>
                   </>
                 )}
               </TransformWrapper>
