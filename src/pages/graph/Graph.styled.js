@@ -122,6 +122,7 @@ export const Wrap = styled.div`
     }
 
     .graphBox {
+      width: 40rem;
       margin-top: 1.25rem;
       margin-bottom: 3.125rem;
       padding: 1.875rem;
@@ -144,6 +145,12 @@ export const Wrap = styled.div`
       @media screen and (max-width: ${({ theme }) => theme.surfaceDuo}) {
         font-size: 1.438rem;
       }
+    }
+    button {
+      background-color: rgba(39, 127, 242);
+      color: white;
+      border: 1px solid white;
+      border-radius: 5px;
     }
   }
 `;
