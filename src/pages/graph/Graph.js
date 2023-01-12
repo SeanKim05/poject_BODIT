@@ -98,15 +98,13 @@ const Graph = () => {
         options: {
           plugins: {
             zoom: {
-              zoom: {
-                wheel: {
-                  enabled: true,
-                },
-                pinch: {
-                  enabled: true,
-                },
-                mode: 'xy',
+              wheel: {
+                enabled: true,
               },
+              pinch: {
+                enabled: true,
+              },
+              mode: 'xy',
             },
           },
         },
@@ -124,19 +122,18 @@ const Graph = () => {
         options: {
           plugins: {
             zoom: {
-              zoom: {
-                wheel: {
-                  enabled: true,
-                },
-                pinch: {
-                  enabled: true,
-                },
-                mode: 'xy',
+              wheel: {
+                enabled: true,
               },
+              pinch: {
+                enabled: true,
+              },
+              mode: 'xy',
             },
           },
         },
       },
+
       {
         labels: createdAt.map(time => time),
         datasets: [
@@ -150,15 +147,13 @@ const Graph = () => {
         options: {
           plugins: {
             zoom: {
-              zoom: {
-                wheel: {
-                  enabled: true,
-                },
-                pinch: {
-                  enabled: true,
-                },
-                mode: 'xy',
+              wheel: {
+                enabled: true,
               },
+              pinch: {
+                enabled: true,
+              },
+              mode: 'xy',
             },
           },
         },
